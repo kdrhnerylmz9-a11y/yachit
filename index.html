@@ -1,122 +1,167 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>YACHT</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>YACHT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-    body {
-      background: #0b0b0b;
-      color: #ffffff;
-      height: 100vh;
-      overflow: hidden;
-    }
+body {
+  background: #0b0b0b;
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+}
 
-    /* ANA KONTEYNER */
-    .container {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 40px;
-    }
+/* ANA KAPSAYICI */
+.container {
+  height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-    /* ÜST MENÜ */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
 
-    header a {
-      color: #ffffff;
-      text-decoration: none;
-      opacity: 0.7;
-    }
+.logo {
+  font-weight: bold;
+}
 
-    header a:hover {
-      opacity: 1;
-    }
+/* HAMBURGER */
+.menu-btn {
+  font-size: 26px;
+  cursor: pointer;
+  user-select: none;
+}
 
-    /* ORTA ALAN */
-    .hero {
-      flex: 1;
-      display: flex;
-      align-items: center;
-    }
+/* HERO */
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
 
-    .hero h1 {
-      font-size: clamp(48px, 10vw, 140px);
-      line-height: 0.9;
-      font-weight: 800;
-      letter-spacing: -4px;
-      text-transform: uppercase;
-    }
+.hero h1 {
+  font-size: clamp(50px, 10vw, 140px);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -4px;
+}
 
-    .hero h1 span {
-      color: #8b1e1e;
-    }
+.hero span {
+  color: #8b1e1e;
+}
 
-    /* ALT BİLGİ */
-    footer {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #777;
-    }
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #777;
+}
 
-    /* DEKOR ÇİZGİ */
-    .line {
-      position: fixed;
-      top: 0;
-      left: 40px;
-      width: 1px;
-      height: 100vh;
-      background: rgba(255,255,255,0.08);
-    }
+/* DİKEY ÇİZGİ */
+.line {
+  position: fixed;
+  left: 40px;
+  top: 0;
+  width: 1px;
+  height: 100vh;
+  background: rgba(255,255,255,0.08);
+}
 
-  </style>
+/* MENU OVERLAY */
+.menu {
+  position: fixed;
+  inset: 0;
+  background: #0b0b0b;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: clamp(30px, 6vw, 70px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 15px 0;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  color: #8b1e1e;
+}
+
+.close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  font-size: 30px;
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="line"></div>
+<div class="line"></div>
 
-  <div class="container">
+<!-- MENU -->
+<div class="menu" id="menu">
+  <div class="close" onclick="toggleMenu()">✕</div>
+  <a href="#">Pantolonlar</a>
+  <a href="#">Sweatler</a>
+  <a href="#">Hoodieler</a>
+</div>
 
-    <header>
-      <div>YACHT</div>
-      <div>
-        <a href="#">Instagram</a>
-      </div>
-    </header>
+<div class="container">
 
-    <section class="hero">
-      <h1>
-        URBAN<br>
-        <span>DISCIPLINE</span>
-      </h1>
-    </section>
+<header>
+  <div class="logo">YACHT</div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</header>
 
-    <footer>
-      <div>© 2026 YACHT</div>
-      <div>COMING SOON</div>
-    </footer>
+<section class="hero">
+  <h1>URBAN<br><span>DISCIPLINE</span></h1>
+</section>
 
-  </div>
+<footer>
+  <div>© 2026 YACHT</div>
+  <div>COMING SOON</div>
+</footer>
+
+</div>
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+</script>
 
 </body>
-</html>
+
 
