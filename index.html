@@ -2,89 +2,121 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <title>YACHT</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YACHT | Urban Streetwear</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-   * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background:
-    linear-gradient(
-      rgba(11, 11, 11, 0.85),
-      rgba(11, 11, 11, 0.85)
-    ),
-    url("https://images.unsplash.com/photo-1520975922284-6b3f7c0b7a58?auto=format&fit=crop&w=1600&q=80");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
-}
+    body {
+      background: #0b0b0b;
+      color: #ffffff;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-h1 {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 78px;
-  letter-spacing: 6px;
-}
+    /* ANA KONTEYNER */
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px;
+    }
 
-p {
-  margin-top: 20px;
-  font-size: 15px;
-  color: #777;
-  letter-spacing: 1px;
-}
+    /* ÜST MENÜ */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-.btn {
-  display: inline-block;
-  margin-top: 35px;
-  padding: 16px 44px;
-  border: 2px solid #8b1e1e;
-  color: #8b1e1e;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: all 0.25s ease;
-}
+    header a {
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.7;
+    }
 
-.btn:hover {
-  background-color: #8b1e1e;
-  color: #0b0b0b;
-}
+    header a:hover {
+      opacity: 1;
+    }
 
-footer {
-  position: absolute;
-  bottom: 20px;
-  font-size: 12px;
-  color: #555;
-}
+    /* ORTA ALAN */
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 10vw, 140px);
+      line-height: 0.9;
+      font-weight: 800;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: #8b1e1e;
+    }
+
+    /* ALT BİLGİ */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #777;
+    }
+
+    /* DEKOR ÇİZGİ */
+    .line {
+      position: fixed;
+      top: 0;
+      left: 40px;
+      width: 1px;
+      height: 100vh;
+      background: rgba(255,255,255,0.08);
+    }
+
   </style>
 </head>
-
 <body>
+
+  <div class="line"></div>
+
   <div class="container">
-    <h1>YACHT</h1>
-    <p>Urban & Streetwear<br>Minimal. Raw. Unisex.</p>
-    <a class="btn" href="tel:+905465882709">Sipariş Ver</a>
+
+    <header>
+      <div>YACHT</div>
+      <div>
+        <a href="#">Instagram</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>
+        URBAN<br>
+        <span>DISCIPLINE</span>
+      </h1>
+    </section>
+
+    <footer>
+      <div>© 2026 YACHT</div>
+      <div>COMING SOON</div>
+    </footer>
+
   </div>
 
-  <footer>
-    © 2026 YACHT
-  </footer>
 </body>
 </html>
-
 
