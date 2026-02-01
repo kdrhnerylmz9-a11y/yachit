@@ -6,190 +6,184 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  background: #0b0b0b;
-  color: #fff;
-  min-height: 100vh;
-  overflow-y: auto;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#0b0b0b;color:#fff}
 
 /* HEADER */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 30px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 5;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+header{
+  position:fixed;top:0;width:100%;
+  padding:28px 40px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(0,0,0,.85),transparent);
+  z-index:10
 }
-
-.logo {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.menu-btn {
-  font-size: 24px;
-  cursor: pointer;
-}
+.logo{letter-spacing:3px;font-size:13px;font-weight:bold}
+.menu-btn{font-size:26px;cursor:pointer}
 
 /* HERO */
-.hero {
-  height: 100vh;
-  padding: 120px 40px 40px;
-  display: flex;
-  align-items: center;
+.hero{
+  height:100vh;
+  padding:120px 40px;
+  display:flex;
+  align-items:center
+}
+.hero h1{
+  font-size:clamp(52px,10vw,140px);
+  line-height:.9;
+  font-weight:900
+}
+.hero span{color:#8b1e1e}
+
+/* RECOMMENDED */
+.recommended{padding:90px 40px}
+.recommended h2{
+  font-size:18px;
+  letter-spacing:3px;
+  margin-bottom:40px;
+  text-transform:uppercase
+}
+.items{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px
+}
+.item{
+  border:1px solid rgba(255,255,255,.08);
+  padding:35px;
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:.3s
+}
+.item:hover{border-color:#8b1e1e;transform:translateY(-5px)}
+.add-btn{
+  border:1px solid #8b1e1e;
+  background:none;
+  color:#fff;
+  padding:10px;
+  cursor:pointer;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase
 }
 
-.hero h1 {
-  font-size: clamp(50px, 10vw, 140px);
-  line-height: 0.9;
-  font-weight: 800;
-  letter-spacing: -4px;
+/* MENU */
+.menu{
+  position:fixed;
+  top:0;right:-340px;
+  width:320px;height:100%;
+  background:#0b0b0b;
+  padding:35px;
+  transition:.4s;
+  z-index:20;
+  display:flex;
+  flex-direction:column
+}
+.menu.active{right:0}
+.close{align-self:flex-end;font-size:22px;cursor:pointer}
+
+/* LINKS */
+.menu-links a{
+  display:block;
+  margin:18px 0;
+  font-size:16px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#fff
+}
+.menu-links a:hover{color:#8b1e1e}
+
+/* CART */
+.cart{
+  margin-top:30px;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:20px
+}
+.cart h3{
+  font-size:13px;
+  letter-spacing:2px;
+  margin-bottom:15px;
+  text-transform:uppercase
+}
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  margin-bottom:10px;
+  color:#ccc
+}
+.qty{
+  display:flex;gap:8px;align-items:center
+}
+.qty button{
+  background:none;
+  border:1px solid rgba(255,255,255,.3);
+  color:#fff;
+  padding:2px 6px;
+  cursor:pointer
+}
+.cart-total{
+  margin-top:15px;
+  font-size:13px;
+  letter-spacing:1px
+}
+.checkout-btn{
+  margin-top:18px;
+  width:100%;
+  padding:12px;
+  background:#8b1e1e;
+  border:none;
+  color:#fff;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-size:12px;
+  cursor:pointer
 }
 
-.hero span {
-  color: #8b1e1e;
+/* PAYMENT */
+.payment-methods{
+  margin-top:20px;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:15px
 }
-
-/* ÖNERİLENLER */
-.recommended {
-  padding: 100px 40px;
+.payment-methods p{
+  font-size:10px;
+  letter-spacing:1px;
+  color:#777;
+  margin-bottom:10px;
+  text-transform:uppercase
 }
-
-.recommended h2 {
-  font-size: 22px;
-  margin-bottom: 40px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.cards{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap
 }
-
-.items {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
-
-.item {
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 40px;
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 1px;
-  min-height: 180px;
-  display: flex;
-  align-items: flex-end;
-  transition: border 0.3s ease, transform 0.3s ease;
-}
-
-.item:hover {
-  border-color: #8b1e1e;
-  transform: translateY(-5px);
-}
-
-/* SAĞDAN MENU */
-.menu {
-  position: fixed;
-  top: 0;
-  right: -320px;
-  width: 300px;
-  height: 100%;
-  background: #0b0b0b;
-  padding: 40px;
-  transition: right 0.4s ease;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.menu.active {
-  right: 0;
-}
-
-.menu a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.menu a:hover {
-  color: #8b1e1e;
-}
-
-.close {
-  align-self: flex-end;
-  font-size: 22px;
-  cursor: pointer;
+.card{
+  border:1px solid rgba(255,255,255,.15);
+  padding:6px 8px;
+  font-size:10px;
+  color:#ccc;
+  letter-spacing:1px
 }
 
 /* FOOTER */
-.site-footer {
-  padding: 25px 40px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #666;
-
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+footer{
+  padding:25px 40px;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  color:#666;
+  text-transform:uppercase
 }
+footer a{color:#666;text-decoration:none;margin-right:14px}
+footer a:hover{color:#8b1e1e}
 
-.site-footer.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.site-footer a {
-  color: #666;
-  text-decoration: none;
-  margin-right: 18px;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.site-footer a:hover {
-  color: #8b1e1e;
-}
-
-.site-footer a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 1px;
-  background: #8b1e1e;
-  transition: width 0.3s ease;
-}
-
-.site-footer a:hover::after {
-  width: 100%;
-}
-
-.footer-left a:last-child,
-.footer-right a:last-child {
-  margin-right: 0;
+/* MOBILE */
+@media(max-width:800px){
+  .items{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -201,12 +195,32 @@ header {
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </header>
 
-<!-- MENU -->
 <div class="menu" id="menu">
   <div class="close" onclick="toggleMenu()">✕</div>
-  <a href="#">Pantolonlar</a>
-  <a href="#">Sweatler</a>
-  <a href="#">Hoodieler</a>
+
+  <div class="menu-links">
+    <a href="#">Pantolonlar</a>
+    <a href="#">Sweatler</a>
+    <a href="#">Hoodieler</a>
+    <a href="#cart">Sepet</a>
+  </div>
+
+  <div class="cart" id="cart">
+    <h3>Sepet</h3>
+    <div id="cartItems"></div>
+    <div class="cart-total">Toplam: <span id="total">0</span> ₺</div>
+    <button class="checkout-btn">Ödemeye Geç</button>
+
+    <div class="payment-methods">
+      <p>Ödeme Yöntemleri</p>
+      <div class="cards">
+        <div class="card">VISA</div>
+        <div class="card">MASTERCARD</div>
+        <div class="card">AMEX</div>
+        <div class="card">TROY</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <section class="hero">
@@ -216,45 +230,73 @@ header {
 <section class="recommended">
   <h2>Önerilen</h2>
   <div class="items">
-    <div class="item">Oversize Pantolon</div>
-    <div class="item">Heavy Sweatshirt</div>
-    <div class="item">Minimal Hoodie</div>
+    <div class="item">
+      Oversize Pantolon – 899 ₺
+      <button class="add-btn" onclick="addToCart('Oversize Pantolon',899)">Sepete Ekle</button>
+    </div>
+    <div class="item">
+      Heavy Sweat – 749 ₺
+      <button class="add-btn" onclick="addToCart('Heavy Sweat',749)">Sepete Ekle</button>
+    </div>
+    <div class="item">
+      Minimal Hoodie – 999 ₺
+      <button class="add-btn" onclick="addToCart('Minimal Hoodie',999)">Sepete Ekle</button>
+    </div>
   </div>
 </section>
 
-<footer class="site-footer">
-  <div class="footer-left">
-    <a href="satis-sozlesmesi.html">Satış Sözleşmesi</a>
-    <a href="kvkk.html">KVKK</a>
-    <a href="mesafeli-satis.html">Mesafeli Satış</a>
-    <a href="#">İade & Değişim</a>
+<footer>
+  <div>
+    <a href="#">Satış Sözleşmesi</a>
+    <a href="#">KVKK</a>
+    <a href="#">Mesafeli Satış</a>
   </div>
-
-  <div class="footer-right">
-    <a href="https://instagram.com/Han_erylmz"target="_blank">Instagram</a>
-    <a href="https://wa.me/905465882709?text=Merhaba%20YACHT%20ürünleri%20hakkında%20bilgi%20almak%20istiyorum" target="_blank">
-      WhatsApp
-    </a>
+  <div>
+    <a href="https://instagram.com/han_erylmz" target="_blank">Instagram</a>
+    <a href="https://wa.me/905465882709" target="_blank">WhatsApp</a>
   </div>
 </footer>
 
 <script>
-function toggleMenu() {
+let cart=[];
+function toggleMenu(){
   document.getElementById("menu").classList.toggle("active");
 }
-
-const footer = document.querySelector(".site-footer");
-
-window.addEventListener("scroll", () => {
-  const trigger = window.innerHeight + window.scrollY;
-  if (trigger >= document.body.offsetHeight - 100) {
-    footer.classList.add("visible");
-  }
-});
+function addToCart(name,price){
+  let item=cart.find(i=>i.name===name);
+  if(item){item.qty++}else{cart.push({name,price,qty:1})}
+  renderCart();
+}
+function renderCart(){
+  let list=document.getElementById("cartItems");
+  let total=0;
+  list.innerHTML="";
+  cart.forEach(i=>{
+    total+=i.price*i.qty;
+    list.innerHTML+=`
+      <div class="cart-item">
+        <span>${i.name}</span>
+        <div class="qty">
+          <button onclick="changeQty('${i.name}',-1)">-</button>
+          <span>${i.qty}</span>
+          <button onclick="changeQty('${i.name}',1)">+</button>
+        </div>
+      </div>`;
+  });
+  document.getElementById("total").innerText=total;
+}
+function changeQty(name,val){
+  cart=cart.map(i=>{
+    if(i.name===name){i.qty+=val}
+    return i;
+  }).filter(i=>i.qty>0);
+  renderCart();
+}
 </script>
 
 </body>
 </html>
+
 
 
 
