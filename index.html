@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>LES BENJAMİNS — Official Store</title>
+<title>HAN — Official Store</title>
 
 <style>
 :root{
@@ -19,6 +19,18 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
   background:var(--bg);
   color:var(--text);
+  overflow-x:hidden;
+}
+
+/* NEW — Announcement Bar */
+.announcement{
+  background:#111;
+  color:#bbb;
+  text-align:center;
+  font-size:12px;
+  padding:8px;
+  letter-spacing:1px;
+  border-bottom:1px solid #1c1c1c;
 }
 
 /* HEADER */
@@ -72,12 +84,7 @@ header{
   z-index:2000;
 }
 #menu.active{right:0}
-#menu h3{
-  margin-top:30px;
-  margin-bottom:10px;
-  font-size:14px;
-  color:var(--muted);
-}
+
 #menu a{
   display:block;
   padding:14px 0;
@@ -91,7 +98,23 @@ header{
   max-width:1300px;
   margin:120px auto 80px;
   padding:0 24px;
+  position:relative;
 }
+
+/* NEW — subtle moving texture */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 30% 20%,#ffffff08,transparent 60%);
+  animation:float 8s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes float{
+  from{transform:translateY(-10px)}
+  to{transform:translateY(10px)}
+}
+
 .hero h1{
   font-size:64px;
   line-height:1.1;
@@ -107,7 +130,15 @@ section{
   max-width:1300px;
   margin:auto;
   padding:100px 24px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .8s ease;
 }
+section.visible{
+  opacity:1;
+  transform:none;
+}
+
 .section-title{
   font-size:28px;
   margin-bottom:40px;
@@ -122,11 +153,17 @@ section{
 .product{
   background:var(--bg-soft);
   padding:20px;
+  transition:.4s;
+  cursor:pointer;
+}
+.product:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px #000;
 }
 .product img{
   width:100%;
   height:360px;
-  background:#222;
+  background:linear-gradient(135deg,#1a1a1a,#222);
 }
 .product h4{margin:18px 0 6px}
 .product span{color:var(--muted)}
@@ -138,14 +175,6 @@ section{
 }
 .drop h2{font-size:42px}
 .drop p{margin-top:12px;color:var(--muted)}
-
-/* MANIFESTO */
-.manifesto{
-  max-width:700px;
-  font-size:16px;
-  line-height:1.8;
-  color:#ddd;
-}
 
 /* FOOTER */
 footer{
@@ -165,38 +194,31 @@ footer a{
   display:block;
   margin-bottom:10px;
 }
-.social a{color:var(--text)}
 
-/* MODAL */
-.modal{
+/* NEW — Back to Top */
+#topBtn{
   position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.8);
-  display:none;
-  align-items:center;
-  justify-content:center;
-}
-.modal-box{
+  bottom:30px;
+  right:30px;
   background:#111;
-  max-width:600px;
-  padding:30px;
-}
-.close{cursor:pointer;color:var(--red);float:right}
-
-/* MOBILE */
-@media(max-width:768px){
-  .hero h1{font-size:42px}
+  border:1px solid #333;
+  color:#fff;
+  padding:10px 14px;
+  cursor:pointer;
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
+<div class="announcement">
+FREE SHIPPING OVER ₺2500 — DROP 01 COMING SOON
+</div>
+
 <header>
   <div class="header-inner">
-    <div class="left">
-      <div class="logo">LES BENJAMİNS</div>
-    </div>
+    <div class="logo">HAN</div>
     <div class="right">
       <div class="auth">
         <a href="#">Giriş</a>
@@ -208,14 +230,10 @@ footer a{
 </header>
 
 <div id="menu">
-  <h3>KATEGORİLER</h3>
   <a href="#">Pantolon</a>
   <a href="#">Sweatshirt</a>
   <a href="#">Hoodie</a>
-
-  <h3>SEPET</h3>
   <a href="#">Sepetim</a>
-  <a href="#">Visa / Mastercard</a>
 </div>
 
 <div class="hero">
@@ -237,15 +255,6 @@ footer a{
   <p>Coming Soon</p>
 </section>
 
-<section>
-  <div class="section-title">Manifesto</div>
-  <div class="manifesto">
-    HAN sokaktan doğar.  
-    Gürültüden değil duruştan beslenir.  
-    Zamansızdır. Net ve filtresizdir.
-  </div>
-</section>
-
 <footer>
   <div class="footer-inner">
     <div>
@@ -253,21 +262,65 @@ footer a{
       <a href="#">Mesafeli Satış</a>
       <a href="#">İade & Değişim</a>
     </div>
-    <div class="social">
+    <div>
       <a href="https://instagram.com/han_erylmz">Instagram</a>
       <a href="https://wa.me/905465882709">WhatsApp</a>
     </div>
+    <div>
+      <span id="year"></span> © HAN
+    </div>
   </div>
 </footer>
+
+<button id="topBtn" onclick="scrollTopPage()">↑</button>
 
 <script>
 function toggleMenu(){
   document.getElementById("menu").classList.toggle("active");
 }
+
+/* Close menu outside click */
+document.addEventListener("click",(e)=>{
+  const menu=document.getElementById("menu");
+  if(!menu.contains(e.target) && !e.target.classList.contains("menu-btn")){
+    menu.classList.remove("active");
+  }
+});
+
+/* ESC closes menu */
+document.addEventListener("keydown",(e)=>{
+  if(e.key==="Escape"){
+    document.getElementById("menu").classList.remove("active");
+  }
+});
+
+/* Scroll animations */
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    const top=sec.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      sec.classList.add("visible");
+    }
+  });
+
+  document.getElementById("topBtn").style.display =
+    window.scrollY>400 ? "block":"none";
+});
+
+/* Back to top */
+function scrollTopPage(){
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* Dynamic year */
+document.getElementById("year").textContent=new Date().getFullYear();
 </script>
 
 </body>
 </html>
+
+
 
 
 
